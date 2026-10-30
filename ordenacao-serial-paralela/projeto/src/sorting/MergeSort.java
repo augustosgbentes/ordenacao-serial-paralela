@@ -3,13 +3,6 @@ package sorting;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-/**
- * Merge Sort — O(n log n).
- * Serial: top-down recursivo com vetor auxiliar único.
- * Paralelo: Fork/Join — as duas metades são ordenadas em tarefas paralelas
- * até um limiar (THRESHOLD), abaixo do qual a versão serial é usada
- * para evitar o custo de criação de tarefas muito pequenas.
- */
 public class MergeSort implements SortAlgorithm {
 
     static final int THRESHOLD = 8_192;

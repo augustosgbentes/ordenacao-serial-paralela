@@ -14,19 +14,6 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * PONTO EXTRA — Gráficos dinâmicos em Java Swing (sem bibliotecas externas).
- *
- * Lê o CSV gerado pelo Benchmark e permite escolher, em tempo real:
- *  - algoritmo, natureza dos dados e número de núcleos;
- *  - métrica: tempo médio (ms) ou speedup (Tserial / Tparalelo);
- *  - escala logarítmica.
- * Cada curva corresponde a uma configuração de threads (1 = serial, 2, 4, 8),
- * com barras de desvio-padrão sobre as 5 amostras.
- *
- * Uso:  java -cp out visualizacao.GraficoDinamico resultados/resultados.csv
- *       java -cp out visualizacao.GraficoDinamico resultados.csv --png pasta  (exporta PNGs sem abrir janela)
- */
 public class GraficoDinamico extends JFrame {
 
     record Linha(String alg, int threads, int nucleos, int n, String tipo, double ms) {}
@@ -72,7 +59,7 @@ public class GraficoDinamico extends JFrame {
         return dados.stream().map(f).distinct().sorted().toArray(String[]::new);
     }
 
-    /** Agrupa as amostras: threads -> lista de pontos (tamanho, média, desvio). */
+
     static Map<Integer, List<Ponto>> series(List<Linha> dados, String alg, String tipo, int nucleos) {
         Map<Integer, Map<Integer, List<Double>>> g = new TreeMap<>();
         for (Linha l : dados)
@@ -105,7 +92,7 @@ public class GraficoDinamico extends JFrame {
         }
     }
 
-    /** Desenha o gráfico (também usado para exportar PNG em modo headless). */
+
     static void desenhar(List<Linha> dados, Graphics2D g, int w, int h, String alg, String tipo, int nucleos,
                   boolean speedup, boolean log) {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

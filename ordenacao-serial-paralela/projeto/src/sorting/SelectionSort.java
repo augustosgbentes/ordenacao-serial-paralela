@@ -1,10 +1,6 @@
 package sorting;
 
-/**
- * Selection Sort — O(n²) em todos os casos.
- * Serial: a cada posição i, procura o menor elemento de a[i..n) e troca.
- * Paralelo: particionamento em blocos ordenados por threads + intercalação ({@link ChunkMerger}).
- */
+
 public class SelectionSort implements SortAlgorithm {
 
     @Override public String name() { return "SelectionSort"; }
@@ -20,7 +16,7 @@ public class SelectionSort implements SortAlgorithm {
         ChunkMerger.sortInChunks(a, threads, (lo, hi) -> selection(a, lo, hi));
     }
 
-    /** Ordena a[lo, hi). */
+
     static void selection(int[] a, int lo, int hi) {
         for (int i = lo; i < hi - 1; i++) {
             int min = i;

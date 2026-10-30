@@ -2,18 +2,14 @@ package benchmark;
 
 import java.util.Random;
 
-/** Gera os conjuntos de dados de entrada, variando tamanho e natureza. */
+
 public final class DataGenerator {
 
     public enum Tipo { ALEATORIO, ORDENADO, INVERSO }
 
     private DataGenerator() {}
 
-    /**
-     * @param n    tamanho do vetor
-     * @param tipo natureza dos dados
-     * @param seed semente (fixa) para que todas as execuções usem exatamente os mesmos dados
-     */
+
     public static int[] gerar(int n, Tipo tipo, long seed) {
         int[] a = new int[n];
         switch (tipo) {

@@ -3,14 +3,7 @@ package sorting;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-/**
- * Quick Sort — O(n log n) no caso médio.
- * Pivô: mediana de três (evita o pior caso O(n²) em vetores já ordenados ou invertidos).
- * Partição de Hoare. A recursão é feita na menor partição e o laço continua na
- * maior, limitando a profundidade da pilha a O(log n).
- * Paralelo: Fork/Join — as duas partições são processadas em tarefas paralelas
- * até o limiar THRESHOLD.
- */
+
 public class QuickSort implements SortAlgorithm {
 
     static final int THRESHOLD = 8_192;
@@ -46,7 +39,7 @@ public class QuickSort implements SortAlgorithm {
         }
     }
 
-    /** Partição de Hoare com pivô mediana-de-três. Retorna índice j tal que a[lo..j] <= a[j+1..hi]. */
+
     static int partition(int[] a, int lo, int hi) {
         int mid = (lo + hi) >>> 1;
         if (a[mid] < a[lo]) swap(a, mid, lo);

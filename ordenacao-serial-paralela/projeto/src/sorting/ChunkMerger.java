@@ -7,24 +7,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.BiConsumer;
 
-/**
- * Estratégia de paralelização por particionamento ("divide e intercala"),
- * usada pelos algoritmos quadráticos (Bubble Sort e Selection Sort):
- *
- * 1. O vetor é dividido em T blocos contíguos (T = número de threads);
- * 2. Cada thread ordena o seu bloco com o algoritmo serial original;
- * 3. Os blocos ordenados são intercalados (merge) de dois em dois, em paralelo,
- *    até restar um único bloco.
- */
+
 public final class ChunkMerger {
 
     private ChunkMerger() {}
 
-    /**
-     * @param a           vetor a ordenar
-     * @param threads     número de threads
-     * @param sortRange   função serial que ordena a[lo, hi)
-     */
     public static void sortInChunks(int[] a, int threads, BiConsumer<Integer, Integer> sortRange) {
         int n = a.length;
         if (threads <= 1 || n < 2) {
@@ -67,7 +54,7 @@ public final class ChunkMerger {
         }
     }
 
-    /** Intercala a[lo,mid) e a[mid,hi) usando buf como área auxiliar. */
+
     static void merge(int[] a, int[] buf, int lo, int mid, int hi) {
         System.arraycopy(a, lo, buf, lo, hi - lo);
         int i = lo, j = mid, k = lo;
